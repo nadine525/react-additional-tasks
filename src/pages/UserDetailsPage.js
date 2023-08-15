@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { getUserId } from 'redux/users/userOperation';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Modal from 'components/Modal/Modal';
+import { StyledLink } from './UserDetailPage.styled';
 
 export const UserDetailsPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -37,7 +38,7 @@ export const UserDetailsPage = () => {
         </button>
         {isOpenModal && <Modal onClose={onClose} id={params.id} />}
 
-        <Link to="edit">Edit</Link>
+        <StyledLink to="edit">Edit</StyledLink>
       </>
     )
   );
