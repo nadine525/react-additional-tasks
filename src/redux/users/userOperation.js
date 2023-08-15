@@ -56,7 +56,7 @@ export const editUser = createAsyncThunk(
   'users/editUser',
   async (editedUser, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`/users/${editedUser.id}`, {
+      const { data } = await axios.put(`/users/${editedUser.id}`, {
         name: editedUser.name,
         phone: editedUser.phone,
         address: editedUser.address,

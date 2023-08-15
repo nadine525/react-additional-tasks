@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { useNavigate } from 'react-router-dom';
 import { selectUsers } from '../redux/users/usersSlice';
 import { editUser } from 'redux/users/userOperation';
 import { useState } from 'react';
@@ -44,7 +44,8 @@ export const EditUser = () => {
   };
 
   const dispatch = useDispatch();
-  const submitEditedUser = event => {
+  const navigate = useNavigate();
+  const submitEditedUser = async event => {
     event.preventDefault();
 
     const editedUser = {
@@ -57,20 +58,9 @@ export const EditUser = () => {
     };
     console.log(editedUser);
 
-    dispatch(editUser(editedUser));
+    await dispatch(editUser(editedUser));
 
-    // const getUserData = async () => {
-    //   const data = await dispatch(editUser(editedUser)).unwrap();
-    //   console.log(data);
-    //   return data;
-    // };
-
-    // const userId = await getUserData().then(value => {
-    //   console.log(value.id);
-    //   return value.id;
-    // });
-
-    // navigate(`/users/${userId}`, { replace: true });
+    navigate(`/users/${editedUser.id}`, { replace: true });
 
     event.target.reset();
   };
